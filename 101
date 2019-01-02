@@ -12,4 +12,5 @@ SELECT 12.0 / 6; --decimal division
 SELECT 8 + 9 * 10   --answer = 98
 SELECT (8 + 9) * 10   --answer = 170
 
+--Mean/Median/Mode/Std. Deviation
 
