@@ -14,3 +14,16 @@ SELECT (8 + 9) * 10   --answer = 170
 
 --Mean/Median/Mode/Std. Deviation
 
+
+--date_part(text, value)
+SELECT
+	date_part('year', '2019-01-03 20:12:12 EST'::timestamptz) AS "year"
+	, date_part('month', '2019-01-03 20:12:12 EST'::timestamptz) AS "date" 
+	, date_part('day', '2019-01-03 20:12:12 EST'::timestamptz) AS "day" 
+	, date_part('hour', '2019-01-03 20:12:12 EST'::timestamptz) AS "hour" 
+	, date_part('minute', '2019-01-03 20:12:12 EST'::timestamptz) AS "minute" 
+	, date_part('second', '2019-01-03 20:12:12 EST'::timestamptz) AS "second" 
+	, date_part('timezone_hour', '2019-01-03 20:12:12 EST'::timestamptz) AS "tz"
+	, date_part('week', '2019-01-03 20:12:12 EST'::timestamptz) AS "week"
+	, date_part('quarter', '2019-01-03 20:12:12 EST'::timestamptz) AS "quarter"
+	, date_part('epoch', '2019-01-03 20:12:12 EST'::timestamptz) AS "epoch"; 
