@@ -27,3 +27,40 @@ SELECT
 	, date_part('week', '2019-01-03 20:12:12 EST'::timestamptz) AS "week"
 	, date_part('quarter', '2019-01-03 20:12:12 EST'::timestamptz) AS "quarter"
 	, date_part('epoch', '2019-01-03 20:12:12 EST'::timestamptz) AS "epoch"; 
+
+--extract
+SELECT extract('year' from '2019-01-03 20:12:12 EST'::timestamptz); 
+
+--make_functions
+SELECT make_date(2018, 1, 3) AS make_date;
+SELECT make_time(18, 4, 30.3) AS make_time;
+SELECT make_timestamptz(2018, 2, 22, 18, 4, 30.3, 'Europe/Lisbon') AS make_timestamptz; 
+
+--current time and date
+SELECT current_date; 
+SELECT current_time;
+SELECT current_timestamp;
+SELECT localtime; 
+SELECT localtimestamp; 
+
+--example_table
+CREATE TABLE current_time_example (
+	time_id bigserial
+	, current_timestamp_col timestamp with time zone
+	, clock_timestamp_col timestamp with time zone
+); 
+
+INSERT INTO current_time_example (current_timestamp_col, clock_timestamp_col)
+	(SELECT current_timestamp,
+			clock_timestamp()
+	FROM generate_series(1,1000)); 
+						 
+SELECT * FROM current_time_example; 
+
+--finding time zones
+SELECT name, utc_offset FROM pg_timezone_names
+WHERE name LIKE 'Europe%' OR name LIKE 'America%'
+ORDER BY name;
+
+--calculating age in years
+SELECT ('1/3/2019'::date - '9/15/1994'::date) / (365) AS age_years;
